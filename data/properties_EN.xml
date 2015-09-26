@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    This XML file allows us to easily customize the look and language used
+    in our program's user interface. Note that this is for customizing settings
+    for the Course Schedule Builder interface, NOT the Web page that we're building. 
+-->
+<properties>
+    <property_list>    
+        <property name="TITLE_WINDOW"		value="Slide Show Maker"></property>  
+        
+        <!-- PROGRAM ICON FILES -->
+	
+        <!-- TOOLTIPS FOR BUTTONS -->
+        <property name="TOOLTIP_NEW_SLIDE_SHOW"	    value="Create a New Slide Show"></property>
+        <property name="TOOLTIP_LOAD_SLIDE_SHOW"    value="Load an Existing Slide Show"></property>
+        <property name="TOOLTIP_SAVE_SLIDE_SHOW"    value="Save this Slide Show"></property>
+        <property name="TOOLTIP_VIEW_SLIDE_SHOW"    value="View this Slide Show"></property>
+        <property name="TOOLTIP_EXIT"		    value="Exit the Application"></property>
+	<property name="TOOLTIP_ADD_SLIDE"	    value="Add Slide"></property>
+	<property name="TOOLTIP_REMOVE_SLIDE"	    value="Remove Slide"></property>
+	<property name="TOOLTIP_MOVE_UP"	    value="Move Slide Up"></property>
+	<property name="TOOLTIP_MOVE_DOWN"	    value="Move Slide Down"></property>
+	<property name="TOOLTIP_PREVIOUS_SLIDE"	    value="Previous Slide"></property>
+	<property name="TOOLTIP_NEXT_SLIDE"	    value="Next Slide"></property>
+	<property name="TOOLTIP_NAME_SLIDE_SHOW"    value="Name this Slide Show"></property>
+        <property name="NAME_LABEL_TEXT"            value="Title:"></property>
+
+        
+	<!-- DEFAULT VALUES -->
+	<property name="DEFAULT_IMAGE_CAPTION"	    value="ENTER CAPTION"></property>
+	<property name="DEFAULT_SLIDE_SHOW_TITLE"   value="ENTER TITLE"></property>
+	
+        <!-- SLIDE SHOW VIEWER STUFF -->
+        <property name ="NEXT_BUTTON_TEXT"          value="Next"></property>
+        <property name ="PREVIOUS_BUTTON_TEXT"      value="Previous"></property>
+        <property name ="TOOLTIP_NEXT_BUTTON"       value="Go to the next slide."></property>
+        <property name ="TOOLTIP_PREVIOUS_BUTTON"   value="Go to the previous slide."></property>
+
+        <!-- SAVEPROMPT STUFF -->
+        <property name ="YES_BUTTON_TEXT"   value="Yes"></property>
+        <property name ="NO_BUTTON_TEXT"   value="No"></property>
+        <property name ="CANCEL_BUTTON_TEXT"   value="Cancel"></property>        
+        <property name ="SAVE_LABEL_TEXT"   value="Do you wish to save?"></property>
+
+        <!-- UI LABELS -->
+	<property name="LABEL_CAPTION"		    value="Caption:"></property>
+               
+        <!-- ERROR STUFF -->       
+        <property name ="ERROR_SAVE_SLIDESHOW_TITLE"    value="SLIDE SHOW SAVE ERROR"></property>
+        <property name ="ERROR_SAVESLIDESHOW_DIALOGUE"  value="There was an error saving this slide show."></property>
+        <property name ="ERROR_IMAGE_RETRIEVAL_TITLE"    value="SLIDE SHOW IMAGE ERROR"></property>
+        <property name ="ERROR_IMAGE_RETRIEVAL_DIALOGUE"  value="There was an error getting an image, check to make sure the file is where you think it is."></property>
+        <property name ="ERROR_LOADING_JSON_TITLE"      value="ERROR LOADING JSON"></property>
+        <property name ="ERROR_LOADING_JSON_DIALOGUE"   value="The JSON file for your slide show is improperly formatted"></property>
+        
+
+        <!-- GUI LABELS -->
+        <property name="COURSE_HEADING_LABEL"           value="Course Site Details"></property>
+        <property name="COURSE_INFO_LABEL"              value="Course Information"></property>
+        <property name="COURSE_SUBJECT_LABEL"           value="Subject:"></property>
+        <property name="COURSE_NUMBER_LABEL"            value="Number:"></property>
+        <property name="COURSE_SEMESTER_LABEL"          value="Semester:"></property>
+        <property name="COURSE_YEAR_LABEL"              value="Year:"></property>
+        <property name="COURSE_TITLE_LABEL"             value="Title:"></property>
+        <property name="INSTRUCTOR_NAME_LABEL"          value="Instrctor Name:"></property>
+        <property name="INSTRUCTOR_URL_LABEL"           value="Instructor Homepage:"></property>
+        <property name="PAGES_SELECTION_HEADING_LABEL"  value="Site Pages"></property>
+        <property name="SCHEDULE_HEADING_LABEL"         value="Course Schedule"></property>
+        <property name="DATE_BOUNDARIES_LABEL"          value="Semester Dates"></property>
+        <property name="STARTING_MONDAY_LABEL"          value="Starting Monday:"></property>
+        <property name="ENDING_FRIDAY_LABEL"            value="Ending Friday:"></property>
+        <property name="LECTURE_DAY_SELECT_LABEL"       value="Lecture Days"></property>
+    </property_list>
+    <property_options_list>
+    </property_options_list>
+</properties>

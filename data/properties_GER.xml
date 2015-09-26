@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    This XML file allows us to easily customize the look and language used
+    in our program's user interface. Note that this is for customizing settings
+    for the Course Schedule Builder interface, NOT the Web page that we're building. 
+-->
+<properties>
+    <property_list>    
+        <property name="TITLE_WINDOW"		value="Dia-Show Maker"></property>  
+        
+        <!-- PROGRAM ICON FILES -->
+	
+        <!-- TOOLTIPS FOR BUTTONS -->
+        <property name="TOOLTIP_NEW_SLIDE_SHOW"	    value="Erstellen einer neuen Diashow"></property>
+        <property name="TOOLTIP_LOAD_SLIDE_SHOW"    value="Laden einer bestehenden Diashow"></property>
+        <property name="TOOLTIP_SAVE_SLIDE_SHOW"    value="Speichern Sie diese Diashow"></property>
+        <property name="TOOLTIP_VIEW_SLIDE_SHOW"    value="Sie zeigen dieses Slide Show"></property>
+        <property name="TOOLTIP_EXIT"		    value="Beenden Sie die Anwendung"></property>
+        <property name="TOOLTIP_ADD_SLIDE"	    value="Folie hinzufügen"></property>
+        <property name="TOOLTIP_REMOVE_SLIDE"	    value="Folie entfernen"></property>
+        <property name="TOOLTIP_MOVE_UP"	    value="Hochrutschen"></property>
+        <property name="TOOLTIP_MOVE_DOWN"	    value="herunterrutschen"></property>
+        <property name="TOOLTIP_PREVIOUS_SLIDE"	    value="Orherige Folie"></property>
+        <property name="TOOLTIP_NEXT_SLIDE"	    value="Nächste Folie"></property>
+        <property name="TOOLTIP_NAME_SLIDE_SHOW"    value="Nennen diese Diashow"></property>
+        <property name="NAME_LABEL_TEXT"            value="Titel:"></property>
+
+        
+        <!-- DEFAULT VALUES -->
+        <property name="DEFAULT_IMAGE_CAPTION"	    value="BILDUNTERSCHRIFT EINGEBEN"></property>
+        <property name="DEFAULT_SLIDE_SHOW_TITLE"   value="TITEL EINGEBEN"></property>
+ 
+        <!-- SLIDE SHOW VIEWER STUFF -->
+        <property name ="NEXT_BUTTON_TEXT"          value="Nachster"></property>
+        <property name ="PREVIOUS_BUTTON_TEXT"      value="Vorhergehende"></property>
+        <property name ="TOOLTIP_NEXT_BUTTON"       value="Gehen Sie zur nachsten Folie."></property>
+        <property name ="TOOLTIP_PREVIOUS_BUTTON"   value="Gehen Sie zur vorherigen Folie."></property>
+        
+        <!-- SAVEPROMPT STUFF -->
+        <property name ="YES_BUTTON_TEXT"   value="Ja"></property>
+        <property name ="NO_BUTTON_TEXT"   value="Nein"></property>
+        <property name ="CANCEL_BUTTON_TEXT"   value="Absagen"></property>
+        <property name ="SAVE_LABEL_TEXT"   value="Wollen Sie speichern?"></property>
+	
+        <!-- UI LABELS -->
+        <property name="LABEL_CAPTION"		    value="Bildunterschrift:"></property>
+               
+        <!-- ERROR STUFF -->       
+        <property name ="ERROR_SAVE_SLIDESHOW_TITLE"    value="DIA-SHOW ZU RETTEN FEHLER"></property>
+        <property name ="ERROR_SAVESLIDESHOW_DIALOGUE"  value="Gab es einen Fehler beim Speichern Diese Diashow"></property>
+        <property name ="ERROR_IMAGE_RETRIEVAL_TITLE"    value="DIA-SHOW BILDFEHLER"></property>
+        <property name ="ERROR_IMAGE_RETRIEVAL_DIALOGUE"  value="Es gab einen Fehler bekommen Sie ein Bild, überprüfen Sie, ob die Datei, wo Sie denken, es ist."></property>
+        <property name ="ERROR_LOADING_JSON_TITLE"      value="FEHLER BEIM LADEN JSON"></property>
+        <property name ="ERROR_LOADING_JSON_DIALOGUE"   value="Die JSON-Datei für Ihre Dia-Show ist falsch formatierte."></property>
+                
+        <!-- GUI LABELS -->
+        <property name="COURSE_HEADING_LABEL"           value="Natürlich Website Details"></property>
+        <property name="COURSE_INFO_LABEL"              value="natürlich Informationen"></property>
+        <property name="COURSE_SUBJECT_LABEL"           value="natürlich Informationen:"></property>
+        <property name="COURSE_NUMBER_LABEL"            value="Nummer:"></property>
+        <property name="COURSE_SEMESTER_LABEL"          value="Semester:"></property>
+        <property name="COURSE_YEAR_LABEL"              value="Jahr:"></property>
+        <property name="COURSE_TITLE_LABEL"             value="Titel:"></property>
+        <property name="INSTRUCTOR_NAME_LABEL"          value="Instruktor Namen:"></property>
+        <property name="INSTRUCTOR_URL_LABEL"           value="Instruktor Homepage:"></property>
+        <property name="PAGES_SELECTION_HEADING_LABEL"  value="Site-Seiten"></property>
+        <property name="SCHEDULE_HEADING_LABEL"         value="Stundenplan"></property>
+        <property name="DATE_BOUNDARIES_LABEL"          value="Semesterdaten"></property>
+        <property name="STARTING_MONDAY_LABEL"          value="ab Montag:"></property>
+        <property name="ENDING_FRIDAY_LABEL"            value="endet Freitag:"></property>
+        <property name="LECTURE_DAY_SELECT_LABEL"       value="Vorlesungstagen"></property>
+    </property_list>
+    <property_options_list>
+    </property_options_list>
+</properties>
