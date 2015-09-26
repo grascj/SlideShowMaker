@@ -95,8 +95,7 @@ public class FileController {
                 // THE APPROPRIATE CONTROLS
                 ui.updateToolbarControls(saved);
                 ui.reloadSlideShowPane(slideShow);
-                // TELL THE USER THE SLIDE SHOW HAS BEEN CREATED
-                // @todo
+
             }
         } catch (IOException ioe) {
             ErrorHandler eH = ui.getErrorHandler();

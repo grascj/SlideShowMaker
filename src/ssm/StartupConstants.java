@@ -20,6 +20,10 @@ public class StartupConstants {
     public static String PATH_SLIDE_SHOW_IMAGES = PATH_IMAGES + "slide_show_images/";
     public static String PATH_CSS = "ssm/style/";
     public static String STYLE_SHEET_UI = PATH_CSS + "SlideShowMakerStyle.css";
+    
+    //SITE RELATED PATHS AND STUFF
+    public static String PATH_SITES = "./sites/";    
+    
 
     // HERE ARE THE LANGUAGE INDEPENDENT GUI ICONS
     public static String ICON_NEW_SLIDE_SHOW = "New.png";
@@ -51,7 +55,16 @@ public class StartupConstants {
     public static String CSS_CLASS_SLIDE_SHOW_EDIT_VBOX = "slide_show_edit_vbox";
     public static String CSS_CLASS_SLIDE_EDIT_VIEW = "slide_edit_view";
     public static String CSS_CLASS_SELECTED_SLIDE_EDIT_VIEW = "selected_slide_edit_view";
-
+    public static String CSS_CLASS_SLIDE_SHOW_FILE_FLOWPANE = "slide_show_file_flowplane";
+    public static String CSS_CLASS_SLIDE_SHOW_EDITOR_SCROLLPANE = "slide_show_editor_scrollpane";
+    public static String CSS_CLASS_SLIDE_SHOW_EDITOR_VBOX = "slide_show_editor_vbox";
+    public static String CSS_CLASS_WORKSPACE = "workspace";
+    
+    //style sheets for other windows
+    public static String CSS_CLASS_PROMPT_PANE = "prompt_pane";
+    public static String CSS_CLASS_PROMPT_CHILDREN = "prompt_children";
+    
+    
     // UI LABELS
     public static String LABEL_SLIDE_SHOW_TITLE = "slide_show_title";
 

@@ -32,8 +32,12 @@ import static ssm.LanguagePropertyType.TOOLTIP_NAME_SLIDE_SHOW;
 import static ssm.StartupConstants.CSS_CLASS_HORIZONTAL_TOOLBAR_BUTTON;
 import static ssm.StartupConstants.CSS_CLASS_SELECTED_SLIDE_EDIT_VIEW;
 import static ssm.StartupConstants.CSS_CLASS_SLIDE_EDIT_VIEW;
+import static ssm.StartupConstants.CSS_CLASS_SLIDE_SHOW_EDITOR_SCROLLPANE;
+import static ssm.StartupConstants.CSS_CLASS_SLIDE_SHOW_EDITOR_VBOX;
 import static ssm.StartupConstants.CSS_CLASS_SLIDE_SHOW_EDIT_VBOX;
+import static ssm.StartupConstants.CSS_CLASS_SLIDE_SHOW_FILE_FLOWPANE;
 import static ssm.StartupConstants.CSS_CLASS_VERTICAL_TOOLBAR_BUTTON;
+import static ssm.StartupConstants.CSS_CLASS_WORKSPACE;
 import static ssm.StartupConstants.ICON_ADD_SLIDE;
 import static ssm.StartupConstants.ICON_EXIT;
 import static ssm.StartupConstants.ICON_LOAD_SLIDE_SHOW;
@@ -81,7 +85,7 @@ public class SlideShowMakerView {
     TextField titleField;
 
     // WORKSPACE
-    HBox workspace;
+    BorderPane workspace;
 
     // THIS WILL GO IN THE LEFT SIDE OF THE SCREEN
     VBox slideEditToolbar;
@@ -127,7 +131,6 @@ public class SlideShowMakerView {
 
         titleField = new TextField();
 
-        
         // WE'LL USE THIS ERROR HANDLER WHEN SOMETHING GOES WRONG
         errorHandler = new ErrorHandler(this);
     }
@@ -181,7 +184,8 @@ public class SlideShowMakerView {
     // UI SETUP HELPER METHODS
     private void initWorkspace() {
         // FIRST THE WORKSPACE ITSELF, WHICH WILL CONTAIN TWO REGIONS
-        workspace = new HBox();
+        workspace = new BorderPane();
+        workspace.getStyleClass().add(CSS_CLASS_WORKSPACE);
 
         // THIS WILL GO IN THE LEFT SIDE OF THE SCREEN
         slideEditToolbar = new VBox();
@@ -193,18 +197,21 @@ public class SlideShowMakerView {
 
         // AND THIS WILL GO IN THE CENTER
         slidesEditorPane = new VBox();
+        slidesEditorPane.getStyleClass().add(CSS_CLASS_SLIDE_SHOW_EDITOR_VBOX);
         slidesEditorScrollPane = new ScrollPane(slidesEditorPane);
+        slidesEditorScrollPane.getStyleClass().add(CSS_CLASS_SLIDE_SHOW_EDITOR_SCROLLPANE);
 
+        
         // NOW PUT THESE TWO IN THE WORKSPACE
-        workspace.getChildren().add(slideEditToolbar);
-        workspace.getChildren().add(slidesEditorScrollPane);
+        workspace.setLeft(slideEditToolbar);
+        workspace.setCenter(slidesEditorScrollPane);
     }
 
     private void initEventHandlers() {
 
         titleField.setOnKeyReleased(e -> {
-                slideShow.setTitle(titleField.getText());
-                fileController.markAsEdited();
+            slideShow.setTitle(titleField.getText());
+            fileController.markAsEdited();
         });
 
         // FIRST THE FILE CONTROLS
@@ -261,6 +268,7 @@ public class SlideShowMakerView {
      */
     private void initFileToolbar() {
         fileToolbarPane = new FlowPane();
+        fileToolbarPane.getStyleClass().add(CSS_CLASS_SLIDE_SHOW_FILE_FLOWPANE);
 
         // HERE ARE OUR FILE TOOLBAR BUTTONS, NOTE THAT SOME WILL
         // START AS ENABLED (false), WHILE OTHERS DISABLED (true)
@@ -330,7 +338,6 @@ public class SlideShowMakerView {
      * @param saved
      */
     public void updateToolbarControls(boolean saved) {
-        PropertiesManager props = PropertiesManager.getPropertiesManager();
 
         // FIRST MAKE SURE THE WORKSPACE IS THERE
         ssmPane.setCenter(workspace);
@@ -409,6 +416,5 @@ public class SlideShowMakerView {
             });
         }
     }
-
 
 }

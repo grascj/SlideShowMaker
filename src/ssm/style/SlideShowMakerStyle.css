@@ -5,36 +5,81 @@
  *  @author McKilla Gorilla & Chris Grasing
  */
 
+
+//LIST OF COLORS FOR USE, THE THEME IS "YELLOW"
+//light yellow -        #fbfd59
+//darker yellow -       #f9d25b
+//tan light yellow -    #c9b957
+//tan dark yellow -     #e0ba69
+
+//@TODO fonts....
+
+
 .slide_show_edit_vbox {
     -fx-background-radius: 5.0;
-    -fx-background-color: rgb(230, 50, 50);
-    -fx-border-color: rgb(50, 5, 5);
+    -fx-background-color: #f9d25b;
+    -fx-border-color: #c9b957;
+    -fx-alignment: CENTER;
+
 }
+
+.slide_show_file_flowplane {
+    -fx-background-radius: 5.0;
+    -fx-background-color: #f9d25b;
+    -fx-border-color: #c9b957;
+}
+
 
 .slide_edit_view {
     -fx-background-radius: 10.0;
-    -fx-background-color: rgb(90, 240, 90);
+    -fx-background-color: #e0ba69;
     -fx-border-color: none;
     -fx-border-thickness: 10px;
     -fx-spacing: 60px;
+    -fx-alignment: CENTER;
 }
 .selected_slide_edit_view {
     -fx-background-radius: 10.0;
-    -fx-background-color: rgb(250, 190, 190);
-    -fx-border-color: rgb(200, 200, 200);
+    -fx-background-color: #c9b957;
+    -fx-border-color: none;
     -fx-border-thickness: 10px;
     -fx-spacing: 60px;
+    -fx-alignment: CENTER;
 }
 
 
 .vertical_toolbar_button {
-    -fx-background-color: rgb(250, 130, 130);
+    -fx-background-color: #c9b957;
     -fx-padding: 10px 10px 10px 10px;
     -fx-spacing: 50px;
 }
 
 .horizontal_toolbar_button {
-    -fx-background-color: rgb(250, 130, 130);
+    -fx-background-color: #c9b957;
     -fx-padding-left: 10px;
     -fx-padding-right: 20px;
+}
+
+.slide_show_editor_scrollpane {
+    -fx-background-color: #fbfd59;
+    -fx-fit-to-width: true;
+    -fx-fit-to-height: true;
+}
+
+.slide_show_editor_vbox {
+    -fx-background-color: #fbfd59;
+}
+
+.workspace {
+    -fx-background-color: #fbfd59;
+}
+
+
+.prompt_pane {
+    -fx-background-color: #fbfd59;
+    -fx-alignment: CENTER;    
+}
+
+.prompt_children {
+    -fx-background-color: #c9b957;
 }
