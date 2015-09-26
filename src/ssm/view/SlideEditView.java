@@ -61,7 +61,6 @@ public class SlideEditView extends HBox {
     public SlideEditView(Slide initSlide, FileController fileController) {
         fc = fileController;
 	// FIRST SELECT THE CSS STYLE CLASS FOR THIS CONTAINER
-	this.getStyleClass().add(CSS_CLASS_SLIDE_EDIT_VIEW);
 	
 	// KEEP THE SLIDE FOR LATER
 	slide = initSlide;

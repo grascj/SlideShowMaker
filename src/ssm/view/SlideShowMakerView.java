@@ -30,6 +30,8 @@ import static ssm.LanguagePropertyType.TOOLTIP_SAVE_SLIDE_SHOW;
 import static ssm.LanguagePropertyType.TOOLTIP_VIEW_SLIDE_SHOW;
 import static ssm.LanguagePropertyType.TOOLTIP_NAME_SLIDE_SHOW;
 import static ssm.StartupConstants.CSS_CLASS_HORIZONTAL_TOOLBAR_BUTTON;
+import static ssm.StartupConstants.CSS_CLASS_SELECTED_SLIDE_EDIT_VIEW;
+import static ssm.StartupConstants.CSS_CLASS_SLIDE_EDIT_VIEW;
 import static ssm.StartupConstants.CSS_CLASS_SLIDE_SHOW_EDIT_VBOX;
 import static ssm.StartupConstants.CSS_CLASS_VERTICAL_TOOLBAR_BUTTON;
 import static ssm.StartupConstants.ICON_ADD_SLIDE;
@@ -76,7 +78,6 @@ public class SlideShowMakerView {
     Button saveSlideShowButton;
     Button viewSlideShowButton;
     Button exitButton;
-    Label titleLabel;
     TextField titleField;
 
     // WORKSPACE
@@ -124,6 +125,9 @@ public class SlideShowMakerView {
         // MAKE THE DATA MANAGING MODEL
         slideShow = new SlideShowModel(this);
 
+        titleField = new TextField();
+
+        
         // WE'LL USE THIS ERROR HANDLER WHEN SOMETHING GOES WRONG
         errorHandler = new ErrorHandler(this);
     }
@@ -171,8 +175,6 @@ public class SlideShowMakerView {
         // AND FINALLY START UP THE WINDOW (WITHOUT THE WORKSPACE)
         // KEEP THE WINDOW FOR LATER
         primaryStage = initPrimaryStage;
-        titleLabel = new Label();
-        titleField = new TextField();
         initWindow(windowTitle);
     }
 
@@ -199,6 +201,12 @@ public class SlideShowMakerView {
     }
 
     private void initEventHandlers() {
+
+        titleField.setOnKeyReleased(e -> {
+                slideShow.setTitle(titleField.getText());
+                fileController.markAsEdited();
+        });
+
         // FIRST THE FILE CONTROLS
         fileController = new FileController(this, fileManager);
         newSlideShowButton.setOnAction(e -> {
@@ -216,9 +224,9 @@ public class SlideShowMakerView {
         viewSlideShowButton.setOnAction(e -> {
             fileController.handleViewRequest();
         });
-/*        nameSlideShowButton.setOnAction(e -> {
-            fileController.handleNameSlideShowRequest();
-        }); */
+        /*        nameSlideShowButton.setOnAction(e -> {
+         fileController.handleNameSlideShowRequest();
+         }); */
 
         // THEN THE SLIDE SHOW EDIT CONTROLS
         editController = new SlideShowEditController(this);
@@ -335,7 +343,7 @@ public class SlideShowMakerView {
             saveSlideShowButton.setDisable(true);
             viewSlideShowButton.setDisable(true);
         } else {
-            
+
             //saveSlideShowButton.setDisable(false);
             viewSlideShowButton.setDisable(false);
         }
@@ -349,26 +357,22 @@ public class SlideShowMakerView {
                 moveUpButton.setDisable(true);
                 moveDownButton.setDisable(true);
             } else {
-                
-                if(slideShow.getSlides().indexOf(getSelectedSlide()) == 0)
-                {
-                moveUpButton.setDisable(true);
-                if(slideShow.getSlides().size() == 1)
-                    moveDownButton.setDisable(true);
-                else
-                    moveDownButton.setDisable(false);
-                }
-                else if(slideShow.getSlides().indexOf(getSelectedSlide()) == slideShow.getSlides().size()-1)
-                {
+
+                if (slideShow.getSlides().indexOf(getSelectedSlide()) == 0) {
+                    moveUpButton.setDisable(true);
+                    if (slideShow.getSlides().size() == 1) {
+                        moveDownButton.setDisable(true);
+                    } else {
+                        moveDownButton.setDisable(false);
+                    }
+                } else if (slideShow.getSlides().indexOf(getSelectedSlide()) == slideShow.getSlides().size() - 1) {
                     moveUpButton.setDisable(false);
                     moveDownButton.setDisable(true);
-                }   
-                else
-                {
+                } else {
                     moveUpButton.setDisable(false);
                     moveDownButton.setDisable(false);
                 }
-                
+
             }
         } else {
             removeButton.setDisable(true);
@@ -387,23 +391,22 @@ public class SlideShowMakerView {
         slidesEditorPane.getChildren().clear();
         titleField.setText(slideShow.getTitle());
         slidesEditorPane.getChildren().add(titleField);
-        titleField.setOnKeyReleased(e -> {
-            slideShow.setTitle(titleField.getText());
-            fileController.markAsEdited();
-        });
         for (Slide slide : slideShowToLoad.getSlides()) {
             SlideEditView slideEditor = new SlideEditView(slide, fileController);
-            slideEditor.setOnMouseClicked(e -> {
-                if (selection != slideEditor) {
-                    handleSelection(slideEditor);
-                }
-            });
-            slidesEditorPane.getChildren().add(slideEditor);
 
+            slidesEditorPane.getChildren().add(slideEditor);
             if (selection != null && slide == getSelectedSlide()) {
                 selection = slideEditor;
-                slideEditor.setStyle("-fx-border-color: red;");
+                slideEditor.getStyleClass().add(CSS_CLASS_SELECTED_SLIDE_EDIT_VIEW);
+                updateToolbarControls(fileController.isSaved());
+            } else {
+                slideEditor.getStyleClass().add(CSS_CLASS_SLIDE_EDIT_VIEW);
             }
+
+            slideEditor.setOnMouseClicked(e -> {
+                selection = slideEditor;
+                reloadSlideShowPane(slideShow);
+            });
         }
     }
 
@@ -413,7 +416,7 @@ public class SlideShowMakerView {
         }
         selection = newselection;
         selection.setStyle("-fx-border-color: red;");
-        
+
         updateToolbarControls(fileController.isSaved());
     }
 

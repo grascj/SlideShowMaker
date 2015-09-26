@@ -1,16 +1,15 @@
 package ssm;
 
 /**
- * This class provides setup constants for initializing the application
- * that are NOT language dependent.
- * 
+ * This class provides setup constants for initializing the application that are
+ * NOT language dependent.
+ *
  * @author McKilla Gorilla & Chris Grasing
  */
 public class StartupConstants {
 
     // WE'LL LOAD ALL THE UI AND LANGUAGE PROPERTIES FROM FILES,
     // BUT WE'LL NEED THESE VALUES TO START THE PROCESS
-
     public static String PROPERTY_TYPES_LIST = "property_types.txt";
     public static String UI_PROPERTIES_FILE_NAME = "properties_EN.xml";
     public static String PROPERTIES_SCHEMA_FILE_NAME = "properties_schema.xsd";
@@ -38,41 +37,34 @@ public class StartupConstants {
 
     // WINDOW ICON
     public static String WINDOW_ICON = "murica.png";
-    
+
     // DEFAULT SLIDE STUFF
-    public static String    DEFAULT_SLIDE_IMAGE = "DefaultStartSlide.png";
-    public static String    DEFAULT_IMAGE_CAPTION = "";
-    public static int	    DEFAULT_THUMBNAIL_WIDTH = 200;
-    public static int	    DEFAULT_SLIDE_SHOW_HEIGHT = 500;
-    public static String    DEFAULT_SLIDE_ERROR_IMAGE = "Red_x.png";
-    
+    public static String DEFAULT_SLIDE_IMAGE = "DefaultStartSlide.png";
+    public static String DEFAULT_IMAGE_CAPTION = "";
+    public static int DEFAULT_THUMBNAIL_WIDTH = 200;
+    public static int DEFAULT_SLIDE_SHOW_HEIGHT = 500;
+    public static String DEFAULT_SLIDE_ERROR_IMAGE = "Red_x.png";
+
     // CSS STYLE SHEET CLASSES
-    public static String    CSS_CLASS_VERTICAL_TOOLBAR_BUTTON = "vertical_toolbar_button";
-    public static String    CSS_CLASS_HORIZONTAL_TOOLBAR_BUTTON = "horizontal_toolbar_button";
-    public static String    CSS_CLASS_SLIDE_SHOW_EDIT_VBOX = "slide_show_edit_vbox";
-    public static String    CSS_CLASS_SLIDE_EDIT_VIEW = "slide_edit_view";
-    
+    public static String CSS_CLASS_VERTICAL_TOOLBAR_BUTTON = "vertical_toolbar_button";
+    public static String CSS_CLASS_HORIZONTAL_TOOLBAR_BUTTON = "horizontal_toolbar_button";
+    public static String CSS_CLASS_SLIDE_SHOW_EDIT_VBOX = "slide_show_edit_vbox";
+    public static String CSS_CLASS_SLIDE_EDIT_VIEW = "slide_edit_view";
+    public static String CSS_CLASS_SELECTED_SLIDE_EDIT_VIEW = "selected_slide_edit_view";
+
     // UI LABELS
-    public static String    LABEL_SLIDE_SHOW_TITLE = "slide_show_title";
-    
-    
+    public static String LABEL_SLIDE_SHOW_TITLE = "slide_show_title";
+
     //ERROR STUFF THAT CANNOT POSSIBLY BE LOADED BY THE XML
-    public static String        EN_ERROR_DATA_TITLE = "DATA ERROR";
-    public static String        EN_ERROR_DATA_MESSAGE = "There was an issue loading the data files.";
-    public static String        EN_ERROR_PROPERTIES_TITLE ="PROPERTIES ERROR";
-    public static String        EN_ERROR_PROPERTIES_MESSAGE ="There was an issue loading the property files.";
-    
-    
+    public static String EN_ERROR_DATA_TITLE = "DATA ERROR";
+    public static String EN_ERROR_DATA_MESSAGE = "There was an issue loading the data files.";
+    public static String EN_ERROR_PROPERTIES_TITLE = "PROPERTIES ERROR";
+    public static String EN_ERROR_PROPERTIES_MESSAGE = "There was an issue loading the property files.";
+
     //SAME AS ABOVE BUT IN GERMAN
-    public static String        GER_ERROR_DATA_TITLE = "Datenfehler";
-    public static String        GER_ERROR_DATA_MESSAGE ="Es gab ein Problem Laden der Daten-Dateien.";
-    public static String        GER_ERROR_PROPERTIES_TITLE = "Immobilienfehler";
-    public static String        GER_ERROR_PROPERTIES_MESSAGE = "es gab ein Problem Laden der Eigenschaftsdateien.";
-         
-    
-    
-    
-    
-    
-    
+    public static String GER_ERROR_DATA_TITLE = "Datenfehler";
+    public static String GER_ERROR_DATA_MESSAGE = "Es gab ein Problem Laden der Daten-Dateien.";
+    public static String GER_ERROR_PROPERTIES_TITLE = "Immobilienfehler";
+    public static String GER_ERROR_PROPERTIES_MESSAGE = "es gab ein Problem Laden der Eigenschaftsdateien.";
+
 }
