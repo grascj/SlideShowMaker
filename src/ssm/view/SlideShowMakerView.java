@@ -410,14 +410,5 @@ public class SlideShowMakerView {
         }
     }
 
-    public void handleSelection(SlideEditView newselection) {
-        if (selection != null) {
-            selection.setStyle("-fx-border-color: none;");
-        }
-        selection = newselection;
-        selection.setStyle("-fx-border-color: red;");
-
-        updateToolbarControls(fileController.isSaved());
-    }
 
 }
