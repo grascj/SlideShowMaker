@@ -23,6 +23,7 @@ import ssm.error.ErrorHandler;
 import ssm.file.SlideShowFileManager;
 import ssm.view.SlideShowMakerView;
 import static ssm.StartupConstants.PATH_SLIDE_SHOWS;
+import ssm.file.SiteBuilder;
 
 /**
  * This class serves as the controller for all file toolbar operations, driving
@@ -41,7 +42,7 @@ public class FileController {
     // THIS GUY KNOWS HOW TO READ AND WRITE SLIDE SHOW DATA
     private SlideShowFileManager slideShowIO;
 
-    private SlideShowModel slideShowToPossiblySave;
+    private SlideShowModel slideShow;
 
     
     
@@ -179,9 +180,13 @@ public class FileController {
     }
 
 
-
+//@TODO implement the site builder and website launcher.
     public void handleViewRequest() {
-        SlideShowViewerController popOut = new SlideShowViewerController(ui.getSlideShow());
+        SiteBuilder sb = new SiteBuilder(ui.getSlideShow());
+
+
+
+//SlideShowViewerController popOut = new SlideShowViewerController(ui.getSlideShow()); 
     }
 
     /**
@@ -200,8 +205,8 @@ public class FileController {
      * option to not continue.
      */
     private boolean promptToSave() throws IOException {
-        slideShowToPossiblySave = ui.getSlideShow();
-        if(slideShowToPossiblySave != null && slideShowToPossiblySave.getSlides().size() > 0) 
+        slideShow = ui.getSlideShow();
+        if(slideShow != null && slideShow.getSlides().size() > 0) 
         {
 
         PropertiesManager props = PropertiesManager.getPropertiesManager();
@@ -223,7 +228,7 @@ public class FileController {
         yesBtn.setOnAction(e -> {
             try {
                 saveStage.close();
-                slideShowIO.saveSlideShow(slideShowToPossiblySave);
+                slideShowIO.saveSlideShow(slideShow);
             } catch (IOException ex) {
                 ErrorHandler eH = ui.getErrorHandler();
                 eH.processError(ERROR_SAVE_SLIDESHOW_TITLE, ERROR_SAVE_SLIDESHOW_DIALOGUE);
