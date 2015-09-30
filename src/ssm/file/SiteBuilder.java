@@ -6,8 +6,12 @@
 package ssm.file;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.file.Files;
 import static ssm.StartupConstants.PATH_SITES;
+import ssm.model.Slide;
 import ssm.model.SlideShowModel;
 
 /**
@@ -25,6 +29,31 @@ public class SiteBuilder {
     String pathImages;
     String pathHTML;
 
+    /*PATHS TO TEMPLATE STUFF FOR WEBSITE*/
+    public static String PATH_TEMPLATE_FOLDER = "./websiteTemplate/";
+    public static String PATH_TEMPLATE_CSS = PATH_TEMPLATE_FOLDER + "css/slideshow_style.css";
+
+    //this will be put into the javascript file AFTER the array of slides is generated
+    public static String JS_OBJECTS = "\n"
+            + "slide = function(initCaption,initImage){\n"
+            + "this.caption = initCaption;\nthis.image = initImage;\n"
+            + "};\n\n"
+            + "var index = 0;\n"
+            + "var slides = [];\n\n";
+
+    public static String JS_FUNCTIONS = "\n"
+            + "function nextButton(){\n"
+            + "\n"
+            + "}\n\n"
+            + ""
+            + "function previousButton(){\n"
+            + "\n"
+            + "}\n\n"
+            + "\n"
+            + "function playSlideShow(){\n"
+            + "\n"
+            + "}\n\n";
+
     public SiteBuilder(SlideShowModel slideShow) {
         this.slideShow = slideShow;
         pathSite = PATH_SITES + this.slideShow.getTitle() + "/";
@@ -34,42 +63,30 @@ public class SiteBuilder {
         pathJSFile = pathJS + "Slidesshow.js";
         pathImages = pathSite + "img/";
         pathHTML = pathSite + "index.html";
-        
+
         try {
-            createDirectories();
+            copyTemplate();
+            generateJavascript();
         } catch (IOException ex) {
             //@TODO catch this IO error
         }
 
     }
 
-    private void createDirectories() throws IOException {
+    private void copyTemplate() throws IOException {
         File siteFolder = new File(pathSite);
 
-        //DELETE FILES
         if (siteFolder.exists()) {
             destroy(siteFolder);
         }
-        
-        boolean siteFolderCreated = siteFolder.mkdirs();
-        if(siteFolderCreated)
-        {
-            File htmlFile = new File(pathHTML);
-            htmlFile.createNewFile();
-          
-            
-            //@TODO probably should do something to keep an eye on these as well 
-            File cssFolder = new File(pathCSS);
-            cssFolder.mkdir();
-            File cssFile = new File(pathCSSFile);
-            cssFile.createNewFile();
-            File jsFolder = new File(pathJS);
-            jsFolder.mkdir();
-            File jsFile = new File(pathJSFile);
-            jsFile.createNewFile();
-            File imgFolder = new File(pathImages);
-            imgFolder.mkdir();
-        } 
+        System.out.println(siteFolder.toString());
+        System.out.println(siteFolder.getName());
+        siteFolder.mkdirs();
+        recursiveCopy(new File(PATH_TEMPLATE_FOLDER), new File(pathSite));
+    }
+
+    public void createFiles() throws IOException {
+
     }
 
     public void destroy(File fileToKill) {
@@ -81,17 +98,40 @@ public class SiteBuilder {
         fileToKill.delete();
     }
 
+    public void recursiveCopy(File source, File target) throws IOException {
+        if (source.isDirectory() && source.list().length > 0) {
+            for (File a : source.listFiles()) {
+                if (a.isDirectory()) {
+                    Files.copy(a.toPath(), new File(target.toString() + "/" + a.getName()).toPath());
+                    recursiveCopy(a, new File(target.toString() + "/" + a.getName()));
+                } else {
+                    Files.copy(a.toPath(), new File(target.toString() + "/" + a.getName()).toPath());
+                }
+            }
+        }
+    }
+
+    private void generateJavascript() throws FileNotFoundException {
+        String jsArrayBuilder = "";
+        for (Slide a : slideShow.getSlides()) {
+            jsArrayBuilder += "slides.push(slide(\"" + a.getImageCaption() + "\",\"" + a.getImageFileName() + "\"));\n";
+        }
+        jsArrayBuilder += "\n";
+
+        //objects -> array -> functions
+        PrintWriter jsWriter = new PrintWriter(pathJSFile);
+        jsWriter.print(JS_OBJECTS);
+        jsWriter.print(jsArrayBuilder);
+        jsWriter.print(JS_FUNCTIONS);
+        jsWriter.close();
+    }
+
     //@TODO ERROR HANDLING?
     public void loadImages() {
-
-    }
-
-    public void generateCSS() {
-
-    }
-
-    public void generateHTML() {
-
+//        for()
+//        {
+//            
+//        }
     }
 
 }
