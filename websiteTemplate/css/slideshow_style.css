@@ -1,0 +1,64 @@
+/*@import url(http://fonts.googleapis.com/css?family=Inconsolata);*/
+
+html, body{
+	margin: 0;
+	background-color: grey;
+	color: #d3d0c8;
+	font-size: 13px;
+}
+
+* {
+	font-family: 'Menlo';
+	font-weight: 100;
+}
+
+h1 {
+	padding: 10px 0;x
+	font-size: 20px;
+	color: yellow;
+	margin-left: 0;
+}
+
+#container {
+	margin: 0;
+	display: block;
+	background-color: purple;
+	height: 650px;
+}
+
+#img_display {
+	padding:10px 0;
+	background-color:brown;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.slideshow_img {
+	display:block;
+	margin: auto;
+}
+
+#caption_display {
+	text-align: center;
+	padding: 10px 0;
+	background-color:grey;
+}
+
+#slide_player {
+	padding: 20px 0;
+	background-color:blue;
+}
+
+#button_container {
+	width: 192px;	
+	height: 21px;
+	margin:auto;
+	display: block;
+}
+
+.buttons {
+	display: inline;
+	margin-left: 20px;
+	margin-right: 20px;	
+}
+
