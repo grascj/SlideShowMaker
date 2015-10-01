@@ -10,6 +10,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
+import static java.nio.file.StandardCopyOption.COPY_ATTRIBUTES;
 import static ssm.StartupConstants.PATH_SITES;
 import ssm.model.Slide;
 import ssm.model.SlideShowModel;
@@ -43,13 +44,19 @@ public class SiteBuilder {
 
     public static String JS_FUNCTIONS = "\n"
             + "function nextButton(){\n"
-            + "\n"
+            + "index++;\n"
+            + "if(index >= slides.length){index = 0;}\n"
+            + ""
             + "}\n\n"
             + ""
+            + ""
             + "function previousButton(){\n"
-            + "\n"
+            + "index--;\n"
+            + "if(index < 0){index = slides.length-1;}\n"
+            + ""
             + "}\n\n"
-            + "\n"
+            + ""
+            + ""
             + "function playSlideShow(){\n"
             + "\n"
             + "}\n\n";
@@ -60,13 +67,14 @@ public class SiteBuilder {
         pathCSS = pathSite + "css/";
         pathCSSFile = pathCSS + "slideshow_style.css";
         pathJS = pathSite + "js/";
-        pathJSFile = pathJS + "Slidesshow.js";
+        pathJSFile = pathJS + "Slideshow.js";
         pathImages = pathSite + "img/";
         pathHTML = pathSite + "index.html";
 
         try {
             copyTemplate();
             generateJavascript();
+            loadImages();
         } catch (IOException ex) {
             //@TODO catch this IO error
         }
@@ -127,11 +135,13 @@ public class SiteBuilder {
     }
 
     //@TODO ERROR HANDLING?
-    public void loadImages() {
-//        for()
-//        {
-//            
-//        }
+    public void loadImages() throws IOException {
+        
+        for (Slide a : slideShow.getSlides()) {
+            File in = new File(a.getImagePath() + a.getImageFileName());
+            File out = new File(pathImages + a.getImageFileName());
+            Files.copy(in.toPath(), out.toPath());
+        }
     }
 
 }
