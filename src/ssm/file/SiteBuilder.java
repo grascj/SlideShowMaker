@@ -10,7 +10,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
-import static java.nio.file.StandardCopyOption.COPY_ATTRIBUTES;
 import static ssm.StartupConstants.PATH_SITES;
 import ssm.model.Slide;
 import ssm.model.SlideShowModel;
@@ -40,26 +39,36 @@ public class SiteBuilder {
             + "this.caption = initCaption;\nthis.image = initImage;\n"
             + "};\n\n"
             + "var index = 0;\n"
-            + "var slides = [];\n\n";
+            + "var slides = [];\n"
+            + "var update;\n\n";
 
     public static String JS_FUNCTIONS = "\n"
             + "function nextButton(){\n"
             + "index++;\n"
             + "if(index >= slides.length){index = 0;}\n"
-            + ""
+            + "changeSlide(index);\n"
             + "}\n\n"
             + ""
             + ""
             + "function previousButton(){\n"
             + "index--;\n"
             + "if(index < 0){index = slides.length-1;}\n"
-            + ""
+            + "changeSlide(index);\n"
             + "}\n\n"
             + ""
             + ""
             + "function playSlideShow(){\n"
-            + "\n"
-            + "}\n\n";
+            + "var mode = document.getElementById(\"slideShowPlayImage\");\n" 
+            + "if(mode.src.match(\"./img/button_images/play.png\")){\nmode.src = \"./img/button_images/pause.png\";\n update = setInterval(nextButton,3000);}\n"
+            + "else {\nmode.src = \"./img/button_images/play.png\";\n clearInterval(update);}\n"
+            + "}\n\n"
+            + ""
+            + ""
+            + "function changeSlide(newLoc) {\n"
+            + "document.getElementById(\"caption_text\").innerHTML = (slides[index]).caption;\n"
+            + "document.getElementById(\"slideshow_img\").setAttribute(\"src\",\"./img/\" + (slides[index]).image);\n"
+            + "}\n\n"
+            + "";
 
     public SiteBuilder(SlideShowModel slideShow) {
         this.slideShow = slideShow;
@@ -122,7 +131,7 @@ public class SiteBuilder {
     private void generateJavascript() throws FileNotFoundException {
         String jsArrayBuilder = "";
         for (Slide a : slideShow.getSlides()) {
-            jsArrayBuilder += "slides.push(slide(\"" + a.getImageCaption() + "\",\"" + a.getImageFileName() + "\"));\n";
+            jsArrayBuilder += "slides.push(new slide(\"" + a.getImageCaption() + "\",\"" + a.getImageFileName() + "\"));\n";
         }
         jsArrayBuilder += "\n";
 
@@ -135,7 +144,7 @@ public class SiteBuilder {
     }
 
     //@TODO ERROR HANDLING?
-    public void loadImages() throws IOException {
+    private void loadImages() throws IOException {
         
         for (Slide a : slideShow.getSlides()) {
             File in = new File(a.getImagePath() + a.getImageFileName());

@@ -13,7 +13,7 @@ html, body{
 }
 
 h1 {
-	padding: 10px 0;x
+	padding: 10px 0;
 	font-size: 20px;
 	color: yellow;
 	margin-left: 0;
@@ -33,7 +33,7 @@ h1 {
 	margin-right: auto;
 }
 
-.slideshow_img {
+#slideshow_img {
 	display:block;
 	margin: auto;
 }
