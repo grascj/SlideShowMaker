@@ -7,6 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import properties_manager.PropertiesManager;
@@ -179,12 +181,24 @@ public class FileController {
         }
     }
 
-
+  
 //@TODO implement the site builder and website launcher.
     public void handleViewRequest() {
         SiteBuilder sb = new SiteBuilder(ui.getSlideShow());
-
-
+        WebView site = new WebView();
+        WebEngine siteEngine = site.getEngine();
+        
+        
+        System.out.println(sb.getURL());
+        System.out.println(new File(sb.getURL()).getPath());
+        System.out.println(new File(sb.getURL()).getAbsolutePath());
+        
+        siteEngine.load("file://" + new File(sb.getURL()).getAbsolutePath());
+        Stage webStage = new Stage();
+        Scene webScene = new Scene(site);
+        webStage.setScene(webScene);
+        webStage.show();
+        
 
 //SlideShowViewerController popOut = new SlideShowViewerController(ui.getSlideShow()); 
     }

@@ -28,7 +28,9 @@ public class SiteBuilder {
     String pathJSFile;
     String pathImages;
     String pathHTML;
-
+    
+    
+    
     /*PATHS TO TEMPLATE STUFF FOR WEBSITE*/
     public static String PATH_TEMPLATE_FOLDER = "./websiteTemplate/";
     public static String PATH_TEMPLATE_CSS = PATH_TEMPLATE_FOLDER + "css/slideshow_style.css";
@@ -159,4 +161,8 @@ public class SiteBuilder {
         }
     }
 
+   public String getURL() {
+       //String url = pathSite.substring(1,pathSite.length());
+       return pathSite + "index.html";
+    }
 }
