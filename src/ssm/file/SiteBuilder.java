@@ -40,7 +40,8 @@ public class SiteBuilder {
             + "};\n\n"
             + "var index = 0;\n"
             + "var slides = [];\n"
-            + "var update;\n\n";
+            + "var update;\n"
+            + "var name;\n\n";
 
     public static String JS_FUNCTIONS = "\n"
             + "function nextButton(){\n"
@@ -56,6 +57,11 @@ public class SiteBuilder {
             + "changeSlide(index);\n"
             + "}\n\n"
             + ""
+            + "function initPage(){\n"
+            + "document.getElementById(\"title\").innerHTML = (name);\n"
+            + "document.getElementById(\"caption_text\").innerHTML = (slides[index]).caption;\n"
+            + "document.getElementById(\"slideshow_img\").setAttribute(\"src\",\"./img/\" + (slides[index]).image);\n"
+            + "}\n\n"
             + ""
             + "function playSlideShow(){\n"
             + "var mode = document.getElementById(\"slideShowPlayImage\");\n" 
@@ -129,7 +135,7 @@ public class SiteBuilder {
     }
 
     private void generateJavascript() throws FileNotFoundException {
-        String jsArrayBuilder = "";
+        String jsArrayBuilder = "name = \"" + slideShow.getTitle() + "\";\n\n";
         for (Slide a : slideShow.getSlides()) {
             jsArrayBuilder += "slides.push(new slide(\"" + a.getImageCaption() + "\",\"" + a.getImageFileName() + "\"));\n";
         }
