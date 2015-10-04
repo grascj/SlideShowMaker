@@ -36,6 +36,7 @@ import static ssm.StartupConstants.CSS_CLASS_SLIDE_SHOW_EDITOR_SCROLLPANE;
 import static ssm.StartupConstants.CSS_CLASS_SLIDE_SHOW_EDITOR_VBOX;
 import static ssm.StartupConstants.CSS_CLASS_SLIDE_SHOW_EDIT_VBOX;
 import static ssm.StartupConstants.CSS_CLASS_SLIDE_SHOW_FILE_FLOWPANE;
+import static ssm.StartupConstants.CSS_CLASS_TITLE_TEXT;
 import static ssm.StartupConstants.CSS_CLASS_VERTICAL_TOOLBAR_BUTTON;
 import static ssm.StartupConstants.CSS_CLASS_WORKSPACE;
 import static ssm.StartupConstants.ICON_ADD_SLIDE;
@@ -130,6 +131,7 @@ public class SlideShowMakerView {
         slideShow = new SlideShowModel(this);
 
         titleField = new TextField();
+        titleField.getStyleClass().add(CSS_CLASS_TITLE_TEXT);
 
         // WE'LL USE THIS ERROR HANDLER WHEN SOMETHING GOES WRONG
         errorHandler = new ErrorHandler(this);

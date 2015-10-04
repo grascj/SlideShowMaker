@@ -2,6 +2,7 @@ package ssm.controller;
 
 import java.io.File;
 import java.io.IOException;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -10,6 +11,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import properties_manager.PropertiesManager;
 import static ssm.LanguagePropertyType.CANCEL_BUTTON_TEXT;
@@ -20,11 +22,14 @@ import static ssm.LanguagePropertyType.ERROR_SAVE_SLIDESHOW_TITLE;
 import static ssm.LanguagePropertyType.NO_BUTTON_TEXT;
 import static ssm.LanguagePropertyType.SAVE_LABEL_TEXT;
 import static ssm.LanguagePropertyType.YES_BUTTON_TEXT;
+import static ssm.StartupConstants.CSS_CLASS_PROMPT_CHILDREN;
+import static ssm.StartupConstants.CSS_CLASS_PROMPT_PANE;
 import ssm.model.SlideShowModel;
 import ssm.error.ErrorHandler;
 import ssm.file.SlideShowFileManager;
 import ssm.view.SlideShowMakerView;
 import static ssm.StartupConstants.PATH_SLIDE_SHOWS;
+import static ssm.StartupConstants.STYLE_SHEET_UI;
 import ssm.file.SiteBuilder;
 
 /**
@@ -182,19 +187,27 @@ public class FileController {
     }
 
   
-//@TODO implement the site builder and website launcher.
     public void handleViewRequest() {
         SiteBuilder sb = new SiteBuilder(ui.getSlideShow());
         WebView site = new WebView();
         WebEngine siteEngine = site.getEngine();
         
         
-        System.out.println(sb.getURL());
-        System.out.println(new File(sb.getURL()).getPath());
-        System.out.println(new File(sb.getURL()).getAbsolutePath());
         
+        Screen screen = Screen.getPrimary();
+        Rectangle2D bounds = screen.getVisualBounds();
+
+
+        
+
         siteEngine.load("file://" + new File(sb.getURL()).getAbsolutePath());
         Stage webStage = new Stage();
+        
+        webStage.setX(bounds.getMinX());
+        webStage.setY(bounds.getMinY());
+        webStage.setWidth(bounds.getWidth());
+        webStage.setHeight(bounds.getHeight());
+        
         Scene webScene = new Scene(site);
         webStage.setScene(webScene);
         webStage.show();
@@ -232,13 +245,21 @@ public class FileController {
         yesBtn.setText(props.getProperty(YES_BUTTON_TEXT));
         Button noBtn = new Button();
         noBtn.setText(props.getProperty(NO_BUTTON_TEXT));
-        Button cancelBtn = new Button();
-        cancelBtn.setText(props.getProperty(CANCEL_BUTTON_TEXT));
+        
+        
+        vbox.getStyleClass().add(CSS_CLASS_PROMPT_PANE);
+        yesBtn.getStyleClass().add(CSS_CLASS_PROMPT_CHILDREN);
+        noBtn.getStyleClass().add(CSS_CLASS_PROMPT_CHILDREN);
+        saveLabel.getStyleClass().add(CSS_CLASS_PROMPT_CHILDREN);
+        
         vbox.getChildren().addAll(saveLabel, yesBtn, noBtn);
         Scene saveScene = new Scene(vbox, 200, 200);
+        saveScene.getStylesheets().add(STYLE_SHEET_UI);
         saveStage.setScene(saveScene);
         saveStage.setAlwaysOnTop(true);
 
+
+        
         yesBtn.setOnAction(e -> {
             try {
                 saveStage.close();

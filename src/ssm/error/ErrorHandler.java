@@ -60,7 +60,7 @@ public class ErrorHandler {
         errorDialog.getStyleClass().add(CSS_CLASS_PROMPT_CHILDREN);        
         
         vbox.getChildren().addAll(errorDialog, okBtn);
-        Scene errorScene = new Scene(vbox, 600, 50);
+        Scene errorScene = new Scene(vbox, 600, 200);
         errorScene.getStylesheets().add(STYLE_SHEET_UI);
         errorStage.setScene(errorScene);
         errorStage.setAlwaysOnTop(true);

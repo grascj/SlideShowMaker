@@ -10,7 +10,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
+import static ssm.LanguagePropertyType.ERROR_IMAGE_RETRIEVAL_DIALOGUE;
+import static ssm.LanguagePropertyType.ERROR_IMAGE_RETRIEVAL_TITLE;
+import static ssm.StartupConstants.DEFAULT_SLIDE_ERROR_IMAGE;
 import static ssm.StartupConstants.PATH_SITES;
+import static ssm.StartupConstants.PATH_SLIDE_SHOW_IMAGES;
+import ssm.error.ErrorHandler;
 import ssm.model.Slide;
 import ssm.model.SlideShowModel;
 
@@ -28,9 +33,7 @@ public class SiteBuilder {
     String pathJSFile;
     String pathImages;
     String pathHTML;
-    
-    
-    
+
     /*PATHS TO TEMPLATE STUFF FOR WEBSITE*/
     public static String PATH_TEMPLATE_FOLDER = "./websiteTemplate/";
     public static String PATH_TEMPLATE_CSS = PATH_TEMPLATE_FOLDER + "css/slideshow_style.css";
@@ -66,7 +69,7 @@ public class SiteBuilder {
             + "}\n\n"
             + ""
             + "function playSlideShow(){\n"
-            + "var mode = document.getElementById(\"slideShowPlayImage\");\n" 
+            + "var mode = document.getElementById(\"slideShowPlayImage\");\n"
             + "if(mode.src.match(\"./img/button_images/play.png\")){\nmode.src = \"./img/button_images/pause.png\";\n update = setInterval(nextButton,3000);}\n"
             + "else {\nmode.src = \"./img/button_images/play.png\";\n clearInterval(update);}\n"
             + "}\n\n"
@@ -90,10 +93,10 @@ public class SiteBuilder {
 
         try {
             copyTemplate();
-            generateJavascript();
             loadImages();
+            generateJavascript();
         } catch (IOException ex) {
-            //@TODO catch this IO error
+
         }
 
     }
@@ -104,14 +107,8 @@ public class SiteBuilder {
         if (siteFolder.exists()) {
             destroy(siteFolder);
         }
-        System.out.println(siteFolder.toString());
-        System.out.println(siteFolder.getName());
         siteFolder.mkdirs();
         recursiveCopy(new File(PATH_TEMPLATE_FOLDER), new File(pathSite));
-    }
-
-    public void createFiles() throws IOException {
-
     }
 
     public void destroy(File fileToKill) {
@@ -151,18 +148,24 @@ public class SiteBuilder {
         jsWriter.close();
     }
 
-    //@TODO ERROR HANDLING?
     private void loadImages() throws IOException {
-        
+
         for (Slide a : slideShow.getSlides()) {
             File in = new File(a.getImagePath() + a.getImageFileName());
+            if (!in.exists()) {
+                ErrorHandler eH = slideShow.getUI().getErrorHandler();
+                eH.processError(ERROR_IMAGE_RETRIEVAL_TITLE, ERROR_IMAGE_RETRIEVAL_DIALOGUE);
+                a.setImagePath(PATH_SLIDE_SHOW_IMAGES);
+                a.setImageFileName(DEFAULT_SLIDE_ERROR_IMAGE);
+                slideShow.getUI().reloadSlideShowPane(slideShow);
+                in = new File(a.getImagePath() + a.getImageFileName());
+            }
             File out = new File(pathImages + a.getImageFileName());
             Files.copy(in.toPath(), out.toPath());
         }
     }
 
-   public String getURL() {
-       //String url = pathSite.substring(1,pathSite.length());
-       return pathSite + "index.html";
+    public String getURL() {
+        return pathSite + "index.html";
     }
 }

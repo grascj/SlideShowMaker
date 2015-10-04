@@ -18,15 +18,18 @@
 .slide_show_edit_vbox {
     -fx-background-radius: 5.0;
     -fx-background-color: #f9d25b;
-    -fx-border-color: #c9b957;
     -fx-alignment: CENTER;
-
+    -fx-spacing: 30px;
+    -fx-border-style: solid;
+    -fx-border-color: #f9d25b;
 }
 
 .slide_show_file_flowplane {
     -fx-background-radius: 5.0;
     -fx-background-color: #f9d25b;
-    -fx-border-color: #c9b957;
+    -fx-hgap: 30px;
+    -fx-border-style: solid;
+    -fx-border-color: #f9d25b;
 }
 
 
@@ -77,9 +80,15 @@
 
 .prompt_pane {
     -fx-background-color: #fbfd59;
-    -fx-alignment: CENTER;    
+    -fx-alignment: CENTER; 
+    -fx-spacing: 5px;
 }
 
 .prompt_children {
     -fx-background-color: #c9b957;
+    -fx-padding: 10px 10px 10px 10px;
+}
+
+.title_text {
+    -fx-alignment: CENTER;
 }
