@@ -1,0 +1,67 @@
+/*@import url(http://fonts.googleapis.com/css?family=Inconsolata);*/
+
+html, body{
+	margin: 0;
+	background-color: yellow;
+	color: black;
+	font-size: 13px;
+}
+
+* {
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	font-size: 16px;
+}
+
+h1 {
+	font-family:  impact, charcoal, sans-serif;
+	padding: 10px 0;
+	font-size: 30px;
+	color: black;
+	margin-left: 0;
+}
+
+#container {
+	margin: 0;
+	display: block;
+	background-color: yellow;
+	height: 650px;
+}
+
+#img_display {
+	padding:10px 0;
+	background-color:grey;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#slideshow_img {
+	display:block;
+	margin: auto;
+	max-height: 400px;
+	
+}
+
+#caption_display {
+	text-align: center;
+	padding: 10px 0;
+	background-color:yellow;
+}
+
+#slide_player {
+	padding: 20px 0;
+	background-color:grey;
+}
+
+#button_container {
+	width: 192px;	
+	height: 21px;
+	margin:auto;
+	display: block;
+}
+
+.buttons {
+	display: inline;
+	margin-left: 20px;
+	margin-right: 20px;	
+}
+

@@ -11,9 +11,9 @@ var name;
 
 name = "Kittelsen and Homer";
 
-slides.push(new slide("mountain","6934fc2db4.jpg"));
-slides.push(new slide("road","hakketspett.jpg"));
-slides.push(new slide("boat","Winslow_Homer_-_The_Fog_Warning_-_Google_Art_Project.jpg"));
+slides.push(new slide("1 ","6934fc2db4.jpg"));
+slides.push(new slide("2 ","hakketspett.jpg"));
+slides.push(new slide("3 ","Winslow_Homer_-_The_Fog_Warning_-_Google_Art_Project.jpg"));
 
 
 function nextButton(){

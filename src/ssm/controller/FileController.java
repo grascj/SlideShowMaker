@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import static javafx.scene.input.DataFormat.HTML;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
@@ -51,10 +52,9 @@ public class FileController {
 
     private SlideShowModel slideShow;
 
-    
-    
-    
-    
+    SiteBuilder sb;
+    WebView site;
+
     /**
      * This default constructor starts the program without a slide show file
      * being edited.
@@ -68,9 +68,8 @@ public class FileController {
         ui = initUI;
         slideShowIO = initSlideShowIO;
     }
-    
-    public SlideShowMakerView getUI()
-    {
+
+    public SlideShowMakerView getUI() {
         return ui;
     }
 
@@ -186,32 +185,27 @@ public class FileController {
         }
     }
 
-  
     public void handleViewRequest() {
-        SiteBuilder sb = new SiteBuilder(ui.getSlideShow());
-        WebView site = new WebView();
-        WebEngine siteEngine = site.getEngine();
-        
-        
-        
+        site = null;
+        sb = new SiteBuilder(ui.getSlideShow());
+        site = new WebView();
+
         Screen screen = Screen.getPrimary();
         Rectangle2D bounds = screen.getVisualBounds();
-
-
         
-
-        siteEngine.load("file://" + new File(sb.getURL()).getAbsolutePath());
+        site.getEngine().load("file://" + new File(sb.getURL()).getAbsolutePath());
+        
         Stage webStage = new Stage();
-        
+
         webStage.setX(bounds.getMinX());
         webStage.setY(bounds.getMinY());
         webStage.setWidth(bounds.getWidth());
         webStage.setHeight(bounds.getHeight());
-        
+
         Scene webScene = new Scene(site);
         webStage.setScene(webScene);
         webStage.show();
-        
+
 
 //SlideShowViewerController popOut = new SlideShowViewerController(ui.getSlideShow()); 
     }
@@ -233,47 +227,43 @@ public class FileController {
      */
     private boolean promptToSave() throws IOException {
         slideShow = ui.getSlideShow();
-        if(slideShow != null && slideShow.getSlides().size() > 0) 
-        {
+        if (slideShow != null && slideShow.getSlides().size() > 0) {
 
-        PropertiesManager props = PropertiesManager.getPropertiesManager();
-        Stage saveStage = new Stage();
-        VBox vbox = new VBox();
-        Label saveLabel = new Label();
-        saveLabel.setText(props.getProperty(SAVE_LABEL_TEXT));
-        Button yesBtn = new Button();
-        yesBtn.setText(props.getProperty(YES_BUTTON_TEXT));
-        Button noBtn = new Button();
-        noBtn.setText(props.getProperty(NO_BUTTON_TEXT));
-        
-        
-        vbox.getStyleClass().add(CSS_CLASS_PROMPT_PANE);
-        yesBtn.getStyleClass().add(CSS_CLASS_PROMPT_CHILDREN);
-        noBtn.getStyleClass().add(CSS_CLASS_PROMPT_CHILDREN);
-        saveLabel.getStyleClass().add(CSS_CLASS_PROMPT_CHILDREN);
-        
-        vbox.getChildren().addAll(saveLabel, yesBtn, noBtn);
-        Scene saveScene = new Scene(vbox, 200, 200);
-        saveScene.getStylesheets().add(STYLE_SHEET_UI);
-        saveStage.setScene(saveScene);
-        saveStage.setAlwaysOnTop(true);
+            PropertiesManager props = PropertiesManager.getPropertiesManager();
+            Stage saveStage = new Stage();
+            VBox vbox = new VBox();
+            Label saveLabel = new Label();
+            saveLabel.setText(props.getProperty(SAVE_LABEL_TEXT));
+            Button yesBtn = new Button();
+            yesBtn.setText(props.getProperty(YES_BUTTON_TEXT));
+            Button noBtn = new Button();
+            noBtn.setText(props.getProperty(NO_BUTTON_TEXT));
 
+            vbox.getStyleClass().add(CSS_CLASS_PROMPT_PANE);
+            yesBtn.getStyleClass().add(CSS_CLASS_PROMPT_CHILDREN);
+            noBtn.getStyleClass().add(CSS_CLASS_PROMPT_CHILDREN);
+            saveLabel.getStyleClass().add(CSS_CLASS_PROMPT_CHILDREN);
 
-        
-        yesBtn.setOnAction(e -> {
-            try {
+            vbox.getChildren().addAll(saveLabel, yesBtn, noBtn);
+            Scene saveScene = new Scene(vbox, 200, 200);
+            saveScene.getStylesheets().add(STYLE_SHEET_UI);
+            saveStage.setScene(saveScene);
+            saveStage.setAlwaysOnTop(true);
+
+            yesBtn.setOnAction(e -> {
+                try {
+                    saveStage.close();
+                    slideShowIO.saveSlideShow(slideShow);
+                } catch (IOException ex) {
+                    ErrorHandler eH = ui.getErrorHandler();
+                    eH.processError(ERROR_SAVE_SLIDESHOW_TITLE, ERROR_SAVE_SLIDESHOW_DIALOGUE);
+                }
+            });
+            noBtn.setOnAction(e -> {
                 saveStage.close();
-                slideShowIO.saveSlideShow(slideShow);
-            } catch (IOException ex) {
-                ErrorHandler eH = ui.getErrorHandler();
-                eH.processError(ERROR_SAVE_SLIDESHOW_TITLE, ERROR_SAVE_SLIDESHOW_DIALOGUE);
-            }
-        });
-        noBtn.setOnAction(e -> {
-            saveStage.close();
-        });
+            });
 
-        saveStage.showAndWait();
+            saveStage.showAndWait();
         }
         return true;
     }
@@ -295,7 +285,7 @@ public class FileController {
             try {
                 SlideShowModel slideShowToLoad = ui.getSlideShow();
                 slideShowIO.loadSlideShow(slideShowToLoad, selectedFile.getAbsolutePath());
-               // ui.reloadSlideShowPane(slideShowToLoad);
+                // ui.reloadSlideShowPane(slideShowToLoad);
                 saved = true;
                 ui.updateToolbarControls(saved);
             } catch (Exception e) {

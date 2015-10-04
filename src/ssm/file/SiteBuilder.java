@@ -26,7 +26,7 @@ import ssm.model.SlideShowModel;
 public class SiteBuilder {
 
     SlideShowModel slideShow;
-    String pathSite;
+    public String pathSite;
     String pathCSS;
     String pathCSSFile;
     String pathJS;
@@ -136,7 +136,7 @@ public class SiteBuilder {
     private void generateJavascript() throws FileNotFoundException {
         String jsArrayBuilder = "name = \"" + slideShow.getTitle() + "\";\n\n";
         for (Slide a : slideShow.getSlides()) {
-            jsArrayBuilder += "slides.push(new slide(\"" + a.getImageCaption() + "\",\"" + a.getImageFileName() + "\"));\n";
+            jsArrayBuilder += "slides.push(new slide(\"" + a.getImageCaption() + " \",\"" + a.getImageFileName() + "\"));\n";
         }
         jsArrayBuilder += "\n";
 
@@ -161,7 +161,8 @@ public class SiteBuilder {
                 in = new File(a.getImagePath() + a.getImageFileName());
             }
             File out = new File(pathImages + a.getImageFileName());
-            Files.copy(in.toPath(), out.toPath());
+            if(!out.exists())
+                Files.copy(in.toPath(), out.toPath());
         }
     }
 
