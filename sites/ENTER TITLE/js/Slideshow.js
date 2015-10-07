@@ -11,9 +11,9 @@ var name;
 
 name = "ENTER TITLE";
 
-slides.push(new slide("pp ","DefaultStartSlide.png"));
-slides.push(new slide("op ","DefaultStartSlide.png"));
-slides.push(new slide("ip ","DefaultStartSlide.png"));
+slides.push(new slide("1 ","DefaultStartSlide.png"));
+slides.push(new slide("2 ","DefaultStartSlide.png"));
+slides.push(new slide("3 ","DefaultStartSlide.png"));
 
 
 function nextButton(){

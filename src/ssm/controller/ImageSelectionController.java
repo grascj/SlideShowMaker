@@ -54,8 +54,8 @@ public class ImageSelectionController {
 	    view.updateSlideImage();
 	}	    
 	else {
-           ErrorHandler eH  = view.getUI().getErrorHandler();
-           eH.processError(ERROR_IMAGE_RETRIEVAL_TITLE, ERROR_IMAGE_RETRIEVAL_DIALOGUE);
+           //ErrorHandler eH  = view.getUI().getErrorHandler();
+           //eH.processError(ERROR_IMAGE_RETRIEVAL_TITLE, ERROR_IMAGE_RETRIEVAL_DIALOGUE);
         }
     }
 }

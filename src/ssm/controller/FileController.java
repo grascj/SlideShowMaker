@@ -2,12 +2,22 @@ package ssm.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.concurrent.locks.ReentrantLock;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.concurrent.Worker;
+import javafx.concurrent.Worker.State;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import static javafx.scene.input.DataFormat.HTML;
+import static javafx.scene.input.DataFormat.URL;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
@@ -52,8 +62,7 @@ public class FileController {
 
     private SlideShowModel slideShow;
 
-    SiteBuilder sb;
-    WebView site;
+    boolean flag;
 
     /**
      * This default constructor starts the program without a slide show file
@@ -186,15 +195,29 @@ public class FileController {
     }
 
     public void handleViewRequest() {
-        site = null;
-        sb = new SiteBuilder(ui.getSlideShow());
-        site = new WebView();
+        SiteBuilder sb = new SiteBuilder(ui.getSlideShow());
 
-        Screen screen = Screen.getPrimary();
-        Rectangle2D bounds = screen.getVisualBounds();
+        flag = true;
+
+        WebView site = new WebView();
         
         site.getEngine().load("file://" + new File(sb.getURL()).getAbsolutePath());
-        
+        //
+        site.getEngine().getLoadWorker().stateProperty().addListener(e -> {
+            if(site.getEngine().getLoadWorker().getState() == State.SUCCEEDED && flag == true)
+            {
+                flag = false;
+                site.getEngine().reload();
+            }
+        });
+        //
+
+        Screen screen = Screen.getPrimary();
+
+        Rectangle2D bounds = screen.getVisualBounds();
+
+        //site.getEngine().load("file://" + new File(sb.getURL()).getAbsolutePath());
+
         Stage webStage = new Stage();
 
         webStage.setX(bounds.getMinX());
@@ -207,7 +230,6 @@ public class FileController {
         webStage.show();
 
 
-//SlideShowViewerController popOut = new SlideShowViewerController(ui.getSlideShow()); 
     }
 
     /**
