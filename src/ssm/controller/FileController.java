@@ -81,6 +81,8 @@ public class FileController {
     public SlideShowMakerView getUI() {
         return ui;
     }
+    
+
 
     public void markAsEdited() {
         saved = false;

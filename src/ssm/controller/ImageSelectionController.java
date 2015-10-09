@@ -33,7 +33,7 @@ public class ImageSelectionController {
      * @param view The user interface control group where the image
      * will appear after selection.
      */
-    public void processSelectImage(Slide slideToEdit, SlideEditView view) {
+    public void processSelectImage(Slide slideToEdit, SlideEditView view, FileController fc) {
 	FileChooser imageFileChooser = new FileChooser();
 	
 	// SET THE STARTING DIRECTORY
@@ -52,6 +52,7 @@ public class ImageSelectionController {
 	    String fileName = file.getName();
 	    slideToEdit.setImage(path, fileName);
 	    view.updateSlideImage();
+            fc.getUI().reloadSlideShowPane(fc.getUI().getSlideShow());
 	}	    
 	else {
            //ErrorHandler eH  = view.getUI().getErrorHandler();

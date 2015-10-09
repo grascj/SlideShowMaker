@@ -85,7 +85,7 @@ public class SlideEditView extends HBox {
 	// SETUP THE EVENT HANDLERS
 	imageController = new ImageSelectionController();
 	imageSelectionView.setOnMousePressed(e -> {
-	    imageController.processSelectImage(slide, this);
+	    imageController.processSelectImage(slide, this, fc);
             fc.markAsEdited();
 	});
         
