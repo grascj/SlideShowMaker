@@ -63,7 +63,6 @@ public class SiteBuilder {
             + "}\n\n"
             + ""
             + "function initPage(){\n"
-            //+ "location.reload(true);\n"
             + "document.getElementById(\"title\").innerHTML = (name);\n"
             + "document.getElementById(\"caption_text\").innerHTML = (slides[index]).caption;\n"
             + "document.getElementById(\"slideshow_img\").setAttribute(\"src\",\"./img/\" + (slides[index]).image);\n"
@@ -170,15 +169,5 @@ public class SiteBuilder {
     public String getURL() {
         return pathSite + "index.html";
     }
-    
-    /*public String getJS(){
-        String jsArrayBuilder = "name = \"" + slideShow.getTitle() + "\";\n\n";
-        for (Slide a : slideShow.getSlides()) {
-            jsArrayBuilder += "slides.push(new slide(\"" + a.getImageCaption() + " \",\"" + a.getImageFileName() + "\"));\n";
-        }
-        jsArrayBuilder += "\n";
-        
-        
-        return jsArrayBuilder;
-    }*/
+
 }

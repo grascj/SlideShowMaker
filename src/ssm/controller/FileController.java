@@ -2,30 +2,17 @@ package ssm.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.concurrent.locks.ReentrantLock;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.concurrent.Worker;
 import javafx.concurrent.Worker.State;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import static javafx.scene.input.DataFormat.HTML;
-import static javafx.scene.input.DataFormat.URL;
 import javafx.scene.layout.VBox;
-import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import properties_manager.PropertiesManager;
-import static ssm.LanguagePropertyType.CANCEL_BUTTON_TEXT;
 import static ssm.LanguagePropertyType.ERROR_LOADING_JSON_DIALOGUE;
 import static ssm.LanguagePropertyType.ERROR_LOADING_JSON_TITLE;
 import static ssm.LanguagePropertyType.ERROR_SAVE_SLIDESHOW_DIALOGUE;
@@ -81,8 +68,6 @@ public class FileController {
     public SlideShowMakerView getUI() {
         return ui;
     }
-    
-
 
     public void markAsEdited() {
         saved = false;
@@ -202,12 +187,11 @@ public class FileController {
         flag = true;
 
         WebView site = new WebView();
-        
+
         site.getEngine().load("file://" + new File(sb.getURL()).getAbsolutePath());
         //
         site.getEngine().getLoadWorker().stateProperty().addListener(e -> {
-            if(site.getEngine().getLoadWorker().getState() == State.SUCCEEDED && flag == true)
-            {
+            if (site.getEngine().getLoadWorker().getState() == State.SUCCEEDED && flag == true) {
                 flag = false;
                 site.getEngine().reload();
             }
@@ -219,7 +203,6 @@ public class FileController {
         Rectangle2D bounds = screen.getVisualBounds();
 
         //site.getEngine().load("file://" + new File(sb.getURL()).getAbsolutePath());
-
         Stage webStage = new Stage();
 
         webStage.setX(bounds.getMinX());
@@ -230,7 +213,6 @@ public class FileController {
         Scene webScene = new Scene(site);
         webStage.setScene(webScene);
         webStage.show();
-
 
     }
 

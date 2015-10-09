@@ -9,11 +9,10 @@ var slides = [];
 var update;
 var name;
 
-name = "Kittelsen and Homer";
+name = "test";
 
-slides.push(new slide("1 ","6934fc2db4.jpg"));
-slides.push(new slide("2 ","hakketspett.jpg"));
-slides.push(new slide("3 ","QuirponIslandNewfoundland.jpg"));
+slides.push(new slide("3 ","BryceCanyonUtah.jpg"));
+slides.push(new slide(" ","DefaultStartSlide.png"));
 
 
 function nextButton(){

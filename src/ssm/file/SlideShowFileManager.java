@@ -20,11 +20,13 @@ import ssm.model.SlideShowModel;
 
 /**
  * This class uses the JSON standard to read and write slideshow data files.
- * 
+ *
  * @author McKilla Gorilla & Chris Grasing
  */
 public class SlideShowFileManager {
+
     // JSON FILE READING AND WRITING CONSTANTS
+
     public static String JSON_TITLE = "title";
     public static String JSON_SLIDES = "slides";
     public static String JSON_IMAGE_FILE_NAME = "image_file_name";
@@ -34,62 +36,61 @@ public class SlideShowFileManager {
     public static String SLASH = "/";
 
     /**
-     * This method saves all the data associated with a slide show to
-     * a JSON file.
-     * 
+     * This method saves all the data associated with a slide show to a JSON
+     * file.
+     *
      * @param slideShowToSave The course whose data we are saving.
-     * 
-     * @throws IOException Thrown when there are issues writing
-     * to the JSON file.
+     *
+     * @throws IOException Thrown when there are issues writing to the JSON
+     * file.
      */
     public void saveSlideShow(SlideShowModel slideShowToSave) throws IOException {
         // BUILD THE FILE PATH
         String slideShowTitle = "" + slideShowToSave.getTitle();
         String jsonFilePath = PATH_SLIDE_SHOWS + SLASH + slideShowTitle + JSON_EXT;
-        
+
         // INIT THE WRITER
         OutputStream os = new FileOutputStream(jsonFilePath);
-        JsonWriter jsonWriter = Json.createWriter(os);  
-           
+        JsonWriter jsonWriter = Json.createWriter(os);
+
         // BUILD THE SLIDES ARRAY
         JsonArray slidesJsonArray = makeSlidesJsonArray(slideShowToSave.getSlides());
-        
+
         // NOW BUILD THE COURSE USING EVERYTHING WE'VE ALREADY MADE
         JsonObject courseJsonObject = Json.createObjectBuilder()
-                                    .add(JSON_TITLE, slideShowToSave.getTitle())
-                                    .add(JSON_SLIDES, slidesJsonArray)
+                .add(JSON_TITLE, slideShowToSave.getTitle())
+                .add(JSON_SLIDES, slidesJsonArray)
                 .build();
-        
+
         // AND SAVE EVERYTHING AT ONCE
         jsonWriter.writeObject(courseJsonObject);
     }
-    
+
     /**
      * This method loads the contents of a JSON file representing a slide show
      * into a SlideSShowModel objecct.
-     * 
+     *
      * @param slideShowToLoad The slide show to load
      * @param jsonFilePath The JSON file to load.
-     * @throws IOException 
+     * @throws IOException
      */
     public void loadSlideShow(SlideShowModel slideShowToLoad, String jsonFilePath) throws IOException {
         // LOAD THE JSON FILE WITH ALL THE DATA
         JsonObject json = loadJSONFile(jsonFilePath);
-        
+
         // NOW LOAD THE COURSE
-	slideShowToLoad.reset();
+        slideShowToLoad.reset();
         slideShowToLoad.setTitle(json.getString(JSON_TITLE));
         JsonArray jsonSlidesArray = json.getJsonArray(JSON_SLIDES);
         for (int i = 0; i < jsonSlidesArray.size(); i++) {
-	    JsonObject slideJso = jsonSlidesArray.getJsonObject(i);
-	    slideShowToLoad.addSlide(	slideJso.getString(JSON_IMAGE_FILE_NAME),
-					slideJso.getString(JSON_IMAGE_PATH),
-                                        slideJso.getString(JSON_CAPTION));
-	}
+            JsonObject slideJso = jsonSlidesArray.getJsonObject(i);
+            slideShowToLoad.addSlide(slideJso.getString(JSON_IMAGE_FILE_NAME),
+                    slideJso.getString(JSON_IMAGE_PATH),
+                    slideJso.getString(JSON_CAPTION));
+        }
     }
 
     // AND HERE ARE THE PRIVATE HELPER METHODS TO HELP THE PUBLIC ONES
-    
     private JsonObject loadJSONFile(String jsonFilePath) throws IOException {
         InputStream is = new FileInputStream(jsonFilePath);
         JsonReader jsonReader = Json.createReader(is);
@@ -97,8 +98,8 @@ public class SlideShowFileManager {
         jsonReader.close();
         is.close();
         return json;
-    }    
-    
+    }
+
     private ArrayList<String> loadArrayFromJSONFile(String jsonFilePath, String arrayName) throws IOException {
         JsonObject json = loadJSONFile(jsonFilePath);
         ArrayList<String> items = new ArrayList();
@@ -108,23 +109,25 @@ public class SlideShowFileManager {
         }
         return items;
     }
-    
+
     private JsonArray makeSlidesJsonArray(List<Slide> slides) {
         JsonArrayBuilder jsb = Json.createArrayBuilder();
         for (Slide slide : slides) {
-	    JsonObject jso = makeSlideJsonObject(slide);
-	    jsb.add(jso);
+            JsonObject jso = makeSlideJsonObject(slide);
+            jsb.add(jso);
         }
         JsonArray jA = jsb.build();
-        return jA;        
+        return jA;
     }
-    
+
     private JsonObject makeSlideJsonObject(Slide slide) {
         JsonObject jso = Json.createObjectBuilder()
-		.add(JSON_IMAGE_FILE_NAME, slide.getImageFileName())
-		.add(JSON_IMAGE_PATH, slide.getImagePath())
+                .add(JSON_IMAGE_FILE_NAME, slide.getImageFileName())
+                .add(JSON_IMAGE_PATH, slide.getImagePath())
                 .add(JSON_CAPTION, slide.getImageCaption())
-		.build();
-	return jso;
+                .build();
+        return jso;
     }
+
+
 }
