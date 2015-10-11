@@ -13,6 +13,7 @@ import properties_manager.PropertiesManager;
 import ssm.LanguagePropertyType;
 import static ssm.LanguagePropertyType.ERROR_IMAGE_RETRIEVAL_DIALOGUE;
 import static ssm.LanguagePropertyType.ERROR_IMAGE_RETRIEVAL_TITLE;
+import static ssm.StartupConstants.CSS_CLASS_SLIDE_EDIT_TEXT;
 import static ssm.StartupConstants.CSS_CLASS_SLIDE_EDIT_VIEW;
 import static ssm.StartupConstants.DEFAULT_SLIDE_ERROR_IMAGE;
 import static ssm.StartupConstants.DEFAULT_SLIDE_IMAGE;
@@ -74,6 +75,8 @@ public class SlideEditView extends HBox {
 	PropertiesManager props = PropertiesManager.getPropertiesManager();
 	captionLabel = new Label(props.getProperty(LanguagePropertyType.LABEL_CAPTION));
 	captionTextField = new TextField();
+        captionLabel.getStyleClass().add(CSS_CLASS_SLIDE_EDIT_TEXT);
+        captionTextField.getStyleClass().add(CSS_CLASS_SLIDE_EDIT_TEXT);
 	captionVBox.getChildren().add(captionLabel);
 	captionVBox.getChildren().add(captionTextField);
         captionTextField.setText(slide.getImageCaption());

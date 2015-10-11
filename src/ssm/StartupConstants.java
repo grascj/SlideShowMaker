@@ -60,6 +60,7 @@ public class StartupConstants {
     public static String CSS_CLASS_SLIDE_SHOW_EDITOR_VBOX = "slide_show_editor_vbox";
     public static String CSS_CLASS_WORKSPACE = "workspace";
     public static String CSS_CLASS_TITLE_TEXT = "title_text";
+    public static String CSS_CLASS_SLIDE_EDIT_TEXT = "slide_edit_text";
     
     //style sheets for other windows
     public static String CSS_CLASS_PROMPT_PANE = "prompt_pane";

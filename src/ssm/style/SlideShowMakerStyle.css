@@ -12,7 +12,6 @@
 //tan light yellow -    #c9b957
 //tan dark yellow -     #e0ba69
 
-//@TODO fonts....
 
 
 .slide_show_edit_vbox {
@@ -42,8 +41,6 @@
     -fx-alignment: CENTER;
     -fx-font-size: 13pt;
     -fx-font-family: sans-serif;
-
-
 }
 .selected_slide_edit_view {
     -fx-background-radius: 10.0;
@@ -53,9 +50,6 @@
     -fx-spacing: 60px;
     -fx-alignment: CENTER;
     -fx-font-size: 13pt;
-    -fx-font-family: sans-serif;
-
-
 }
 
 
@@ -81,10 +75,15 @@
     -fx-background-color: #fbfd59;
 }
 
-.workspace {
+
+
+.backdrop {
     -fx-background-color: #fbfd59;
 }
 
+.root {
+        -fx-background-color: #fbfd59;
+}
 
 .prompt_pane {
     -fx-background-color: #fbfd59;
@@ -95,7 +94,7 @@
 .prompt_children {
     -fx-background-color: #c9b957;
     -fx-padding: 10px 10px 10px 10px;
-    -fx-font-family: sans-serif;
+    -fx-font-family: serif;
     -fx-font-size: 13pt;
     -fx-wrap-text: true;
 }
@@ -103,5 +102,10 @@
 .title_text {
     -fx-alignment: CENTER;
     -fx-font-family: serif;
+    -fx-font-size: 16pt;
+}
+
+.slide_edit_text {
+    -fx-font-family: sans-serif;
     -fx-font-size: 16pt;
 }

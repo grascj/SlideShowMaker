@@ -302,12 +302,14 @@ public class SlideShowMakerView {
         ssmPane = new BorderPane();
         ssmPane.setTop(fileToolbarPane);
         primaryScene = new Scene(ssmPane);
-
+        
+        
         // NOW TIE THE SCENE TO THE WINDOW, SELECT THE STYLESHEET
         // WE'LL USE TO STYLIZE OUR GUI CONTROLS, AND OPEN THE WINDOW
         primaryScene.getStylesheets().add(STYLE_SHEET_UI);
         primaryStage.setScene(primaryScene);
         primaryStage.show();
+        
     }
 
     /**
