@@ -188,7 +188,7 @@ public class FileController {
 
         WebView site = new WebView();
 
-        site.getEngine().load("file://" + new File(sb.getURL()).getAbsolutePath());
+        site.getEngine().load("file:///" + new File(sb.getURL()).getAbsolutePath());
         //
         site.getEngine().getLoadWorker().stateProperty().addListener(e -> {
             if (site.getEngine().getLoadWorker().getState() == State.SUCCEEDED && flag == true) {
