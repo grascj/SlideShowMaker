@@ -39,8 +39,7 @@
     -fx-border-thickness: 10px;
     -fx-spacing: 60px;
     -fx-alignment: CENTER;
-    -fx-font-size: 13pt;
-    -fx-font-family: sans-serif;
+
 }
 .selected_slide_edit_view {
     -fx-background-radius: 10.0;
@@ -49,7 +48,6 @@
     -fx-border-thickness: 10px;
     -fx-spacing: 60px;
     -fx-alignment: CENTER;
-    -fx-font-size: 13pt;
 }
 
 
@@ -106,6 +104,6 @@
 }
 
 .slide_edit_text {
-    -fx-font-family: sans-serif;
+    -fx-font-family: serif;
     -fx-font-size: 16pt;
 }
