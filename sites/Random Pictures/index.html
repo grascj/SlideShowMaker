@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SlideShowWebsite</title>
+	<link rel="stylesheet" href="css/slideshow_style.css"/>
+	<script type="text/javascript" src="js/Slideshow.js"></script>
+</head>
+<body onload="initPage()">
+<div id="container">
+	<h1 id="title">sample title</h1>
+	<div id="img_display">
+		<img id="slideshow_img" alt="slideshow_image">	
+	</div>
+	<div id="caption_display">
+		<p id="caption_text">sample caption</p>
+	</div>
+	<div id="slide_player">
+		<div id="button_container">
+		<img class="buttons" onclick="previousButton()" alt="previous" src="img/button_images/previous.png">
+		<img id="slideShowPlayImage" class="buttons" onclick="playSlideShow()" alt="play/pause" src="img/button_images/play.png">
+		<img class="buttons" onclick="nextButton()" alt="next" src="img/button_images/next.png">
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

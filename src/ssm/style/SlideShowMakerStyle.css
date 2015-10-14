@@ -7,7 +7,7 @@
 
 
 //LIST OF COLORS FOR USE, THE THEME IS "YELLOW"
-//light yellow -        #fbfd59
+//background    -        #373b41
 //darker yellow -       #f9d25b
 //tan light yellow -    #c9b957
 //tan dark yellow -     #e0ba69
@@ -16,19 +16,19 @@
 
 .slide_show_edit_vbox {
     -fx-background-radius: 5.0;
-    -fx-background-color: #f9d25b;
+    -fx-background-color: #ffe863;
     -fx-alignment: CENTER;
     -fx-spacing: 30px;
     -fx-border-style: solid;
-    -fx-border-color: #f9d25b;
+    -fx-border-color: #ffe863;
 }
 
 .slide_show_file_flowplane {
     -fx-background-radius: 5.0;
-    -fx-background-color: #f9d25b;
+    -fx-background-color: #ffe863;
     -fx-hgap: 30px;
     -fx-border-style: solid;
-    -fx-border-color: #f9d25b;
+    -fx-border-color: #ffe863;
 }
 
 
@@ -43,7 +43,7 @@
 }
 .selected_slide_edit_view {
     -fx-background-radius: 10.0;
-    -fx-background-color: #c9b957;
+    -fx-background-color: #e84f4f;
     -fx-border-color: none;
     -fx-border-thickness: 10px;
     -fx-spacing: 60px;
@@ -52,45 +52,45 @@
 
 
 .vertical_toolbar_button {
-    -fx-background-color: #c9b957;
+    -fx-background-color: #e84f4f;
     -fx-padding: 10px 10px 10px 10px;
     -fx-spacing: 50px;
 }
 
 .horizontal_toolbar_button {
-    -fx-background-color: #c9b957;
+    -fx-background-color: #e84f4f;
     -fx-padding-left: 10px;
     -fx-padding-right: 20px;
 }
 
 .slide_show_editor_scrollpane {
-    -fx-background-color: #fbfd59;
+    -fx-background-color: #ffe863;
     -fx-fit-to-width: true;
     -fx-fit-to-height: true;
 }
 
 .slide_show_editor_vbox {
-    -fx-background-color: #fbfd59;
+    -fx-background-color: #ffe863;
 }
 
 
 
 .backdrop {
-    -fx-background-color: #fbfd59;
+    -fx-background-color: #ffe863;
 }
 
 .root {
-        -fx-background-color: #fbfd59;
+        -fx-background-color: #ffe863;
 }
 
 .prompt_pane {
-    -fx-background-color: #fbfd59;
+    -fx-background-color: #ffe863;
     -fx-alignment: CENTER; 
     -fx-spacing: 5px;
 }
 
 .prompt_children {
-    -fx-background-color: #c9b957;
+    -fx-background-color: #e84f4f;
     -fx-padding: 10px 10px 10px 10px;
     -fx-font-family: serif;
     -fx-font-size: 13pt;
